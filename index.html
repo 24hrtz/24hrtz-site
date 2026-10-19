@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>24HRT.Z Portfolio</title>
+<meta name="description" content="Editorial portraits, brand campaigns, and headshots by Bryce (24HRT.Z). Shooting in Connecticut and New York.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta property="og:title" content="24HRT.Z · Bryce">
+<meta property="og:description" content="Editorial portraits, campaigns, and headshots. Connecticut and New York.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500&display=swap">
+<script>window.SITE_LIVE=false</script>
+<style>
+/* Layout: one black continuous scroll. Cover Flow hero, All work grid, About, Services, Inquire, each in a centered 1080px column */
+:root{
+  --ink:#0b0b0b; --panel:#141413; --line:#2c2c2a; --line-2:#4a4945;
+  --paper:#f1efe8; --text:#d3d1c7; --muted:#8a8882; --err:#f09595;
+  --display:'Anton',Impact,'Arial Narrow',sans-serif;
+  --body:'Archivo',Helvetica,Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.65}
+img{max-width:100%}
+[hidden]{display:none!important}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+.eye{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.h{font-family:var(--display);font-weight:400;color:var(--paper);line-height:1;margin:0;text-wrap:balance;letter-spacing:.01em}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(11,11,11,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:.5px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{font-family:var(--display);font-size:22px;color:var(--paper);text-decoration:none;letter-spacing:.04em}
+.links{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.links a{text-decoration:none;color:var(--muted);transition:color .2s}
+.links a:hover{color:var(--paper)}
+@media (max-width:520px){.links{gap:12px;font-size:11px;letter-spacing:.1em}.links a.opt{display:none}}
+
+/* hero / cover flow */
+.hero{padding-block:2.5rem 1rem}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:.5rem}
+.hero .h{font-size:clamp(44px,9vw,96px)}
+.hero-sub{max-width:34ch;color:var(--text);margin:0;font-size:14px}
+.stage{position:relative;height:clamp(300px,52vw,440px);perspective:1000px;overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.stage.drag{cursor:grabbing}
+.card{position:absolute;left:50%;top:44%;transform-style:preserve-3d;will-change:transform;cursor:pointer}
+.face,.refl{position:absolute;left:0;width:100%;height:100%;background:var(--panel);overflow:hidden}
+.face{top:0}
+.refl{top:100%;transform:scaleY(-1);-webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.3),transparent 55%);mask-image:linear-gradient(to top,rgba(0,0,0,.3),transparent 55%)}
+.face img,.refl img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.now{text-align:center;margin:-.25rem 0 0;min-height:52px}
+.now b{display:block;font-family:var(--display);font-weight:400;font-size:22px;color:var(--paper);letter-spacing:.02em}
+.now span{font-size:12px;color:var(--muted)}
+.hint{text-align:center;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:1rem 0 0}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(11,11,11,.95);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;opacity:0;pointer-events:none;transition:opacity .3s;cursor:zoom-out;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px))}
+.lb.open{opacity:1;pointer-events:auto}
+.lb-img{max-width:100%;background:var(--panel);transform:scale(.94);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.lb.open .lb-img{transform:scale(1)}
+.lb-img img{display:block;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .25s}
+.lb-img img.ready{opacity:1}
+.lb-cap{color:var(--muted);font-size:13px;text-align:center}
+.lb-cap b{color:var(--paper);font-weight:500}
+.lb-x{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));background:none;border:.5px solid var(--line-2);color:var(--paper);width:40px;height:40px;border-radius:50%;font-size:18px;cursor:pointer;z-index:2}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(11,11,11,.5);border:.5px solid var(--line-2);color:var(--paper);width:44px;height:44px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;z-index:2}
+.lb-nav:hover,.lb-x:hover{border-color:var(--paper)}
+.lb-nav.prev{left:max(12px,env(safe-area-inset-left,0px))}
+.lb-nav.next{right:max(12px,env(safe-area-inset-right,0px))}
+@media (prefers-reduced-motion:reduce){.lb,.lb-img,.lb-img img{transition:none}}
+
+section{padding-block:5rem}
+section+section{border-top:.5px solid var(--line)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:2rem}
+.sec-head .h{font-size:clamp(44px,7vw,72px)}
+.note{font-size:13px;color:var(--muted);margin:1.5rem 0 0}
+
+/* all work grid */
+.all{padding-top:3rem}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:500 12px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:transparent;border:.5px solid var(--line-2);border-radius:999px;padding:8px 14px;cursor:pointer;transition:color .2s,background .2s,border-color .2s}
+.chip:hover{color:var(--paper);border-color:var(--paper)}
+.chip[aria-pressed="true"]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.grid{columns:3 220px;column-gap:10px}
+.tile{display:block;width:100%;margin:0 0 10px;padding:0;border:0;border-radius:0;background:var(--panel);break-inside:avoid;position:relative;cursor:zoom-in;overflow:hidden}
+.tile img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.tile:hover img{transform:scale(1.03)}
+.tile span{position:absolute;left:0;right:0;bottom:0;padding:32px 12px 10px;text-align:left;color:var(--text);font:400 10px var(--body);letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(transparent,rgba(0,0,0,.6));opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s}
+.tile span b{display:block;font-family:var(--display);font-weight:400;font-size:17px;letter-spacing:.02em;text-transform:none;color:var(--paper)}
+.tile:hover span,.tile:focus-visible span{opacity:1;transform:none}
+@media (hover:none){.tile span{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.chip,.tile span,.tile img{transition:none}}
+
+/* about */
+.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:3rem;align-items:center}
+.pol{position:relative;width:min(320px,100%);justify-self:center;transform:rotate(-4deg);transition:transform .45s cubic-bezier(.2,.8,.2,1);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.pol:hover{transform:rotate(0) scale(1.02)}
+.pol img{display:block;width:100%;height:auto}
+.pol-cap{position:absolute;left:0;right:0;bottom:7%;text-align:center;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#444441}
+@media (prefers-reduced-motion:reduce){.pol{transition:none}}
+.about .h{font-size:clamp(48px,7vw,72px);margin-bottom:1rem}
+.about p.body{max-width:60ch;margin:0 0 1rem}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-size:14px;margin:1.5rem 0;padding-top:1rem;border-top:.5px solid var(--line-2)}
+.facts dt{color:var(--muted)}
+.facts dd{margin:0;color:var(--paper)}
+.btn{display:inline-block;font:500 13px var(--body);letter-spacing:.12em;text-transform:uppercase;padding:13px 22px;border-radius:2px;cursor:pointer;text-decoration:none;border:.5px solid var(--paper);transition:background .2s,color .2s}
+.btn.solid{background:var(--paper);color:var(--ink)}
+.btn.solid:hover{background:transparent;color:var(--paper)}
+.btn.ghost{background:transparent;color:var(--paper);border-color:var(--line-2);width:100%;text-align:center}
+.btn.ghost:hover{background:var(--paper);color:var(--ink)}
+.btn[disabled]{opacity:.6;cursor:wait}
+
+/* services */
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.sv-card{border:.5px solid var(--line-2);border-radius:4px;padding:1.5rem;display:flex;flex-direction:column;min-width:0;transition:border-color .25s}
+.sv-card:hover{border-color:#b4b2a9}
+.sv-tag{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.sv-t{font-family:var(--display);font-weight:400;font-size:28px;line-height:1.05;color:var(--paper);margin:0 0 16px;text-wrap:balance}
+.sv-from{font-size:12px;color:var(--muted);margin:0}
+.sv-price{font-family:var(--display);font-size:44px;line-height:1.1;color:var(--paper);margin:0 0 16px}
+.sv-list{list-style:none;margin:0 0 20px;padding:14px 0 0;border-top:.5px solid var(--line);display:grid;gap:12px;flex:1}
+.sv-list li{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--text)}
+.sv-list li b{font-weight:500;color:var(--paper);font-variant-numeric:tabular-nums}
+.sv-list small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+
+/* inquire */
+.inq{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:3rem}
+.inq .h{font-size:clamp(44px,7vw,72px);margin-bottom:1rem}
+form{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;min-width:0}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f.full{grid-column:1/-1}
+label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{font:400 15px var(--body);color:var(--paper);background:var(--panel);border:.5px solid var(--line-2);border-radius:2px;padding:12px;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--paper)}
+textarea{min-height:120px;resize:vertical}
+.err{font-size:12px;color:var(--err)}
+.sent{grid-column:1/-1;border:.5px solid var(--line-2);padding:14px 16px;font-size:14px;color:var(--paper)}
+.contact-alt{font-size:14px;margin:1.5rem 0 0}
+.contact-alt a{color:var(--paper)}
+.hp{position:absolute;left:-9999px}
+
+footer{border-top:.5px solid var(--line);padding-block:2rem;font-size:12px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="logo" href="#work">24HRT.Z</a>
+  <div class="links"><a href="#work">Work</a><a href="#about" class="opt">About</a><a href="#services">Services</a><a href="#inquire">Book</a></div>
+</div></nav>
+
+<main>
+<header class="hero" id="work"><div class="wrap">
+  <div class="hero-top">
+    <h1 class="h">Light first.</h1>
+    <p class="hero-sub">Editorial portraits, campaigns, and headshots by Bryce. Shooting in Connecticut and New York.</p>
+  </div>
+  <div class="stage" id="stage" role="region" aria-roledescription="carousel" aria-label="Projects. Use left and right arrow keys to browse, Enter to open." tabindex="0"></div>
+  <div class="now" aria-live="polite"><b id="nowT"></b><span id="nowS"></span></div>
+  <p class="hint">Drag to flip through · Tap the center to open the project</p>
+</div></header>
+
+<section id="all" class="all"><div class="wrap">
+  <div class="sec-head"><div><p class="eye">Archive</p><h2 class="h">All work</h2></div>
+  <div class="chips" role="group" aria-label="Filter photos"><button class="chip" data-f="All" aria-pressed="true">All</button><button class="chip" data-f="Editorial" aria-pressed="false">Editorial</button><button class="chip" data-f="Campaigns" aria-pressed="false">Campaigns</button><button class="chip" data-f="Portraits" aria-pressed="false">Portraits</button></div></div>
+  <div class="grid" id="grid"></div>
+  <p class="note" id="gcount"></p>
+</div></section>
+
+<section id="about"><div class="wrap about">
+  <div class="pol"><img alt="Polaroid self-portrait of Bryce" src="assets/polaroid.jpg" width="640" height="765"><div class="pol-cap">24HRT.Z</div></div>
+  <div style="min-width:0">
+    <p class="eye">About</p>
+    <h2 class="h">Bryce</h2>
+    <p class="body">I'm a photographer and designer from Connecticut, shooting under the name 24HRT.Z.</p>
+    <p class="body">I build every shoot around the light. Colored gels, cut shadows, a gas station at night, a record spinning on a coffee table. If it can throw color across a face, I'm using it.</p>
+    <p class="body">I'm studying Communications at UConn and making spec campaigns for brands I want to work with, so you can see the idea instead of hearing about it. I'm headed for fashion, entertainment, and advertising.</p>
+    <dl class="facts"><dt>Based in</dt><dd>Connecticut</dd><dt>Shoots</dt><dd>Portraits, editorial, lookbooks, spec ads</dd><dt>Also does</dt><dd>Logos and brand design</dd></dl>
+    <a class="btn solid" href="#inquire">Book a shoot</a>
+  </div>
+</div></section>
+
+<section id="services"><div class="wrap">
+  <div class="sec-head"><div><p class="eye">Services</p><h2 class="h">Book a shoot</h2></div></div>
+  <div class="sv-grid">
+    <div class="sv-card"><p class="sv-tag">Editorial</p><h3 class="sv-t">Editorial and creative portraits</h3><p class="sv-from">Starting at</p><p class="sv-price">$150</p>
+      <ul class="sv-list"><li><span>Mini editorial<small>1 hr, 1–2 looks, 10 edits</small></span><b>$150</b></li><li><span>Full editorial<small>2 hrs, 3 looks, gel or flash, 20 edits</small></span><b>$275</b></li></ul>
+      <a class="btn ghost" href="#inquire" data-service="Editorial and creative portraits">Inquire</a></div>
+    <div class="sv-card"><p class="sv-tag">Campaigns</p><h3 class="sv-t">Brand and artist campaigns</h3><p class="sv-from">Starting at</p><p class="sv-price">$350</p>
+      <ul class="sv-list"><li><span>Artist press kit<small>2 hrs, 15 edits, cover art crops</small></span><b>$350</b></li><li><span>Brand half day<small>4 hrs, 25–30 edits, web and social use</small></span><b>$600</b></li><li><span>Brand full day<small>8 hrs, 50+ edits, web and social use</small></span><b>$1,000</b></li></ul>
+      <a class="btn ghost" href="#inquire" data-service="Brand and artist campaigns">Inquire</a></div>
+    <div class="sv-card"><p class="sv-tag">Portraits</p><h3 class="sv-t">Headshots and grad photos</h3><p class="sv-from">Starting at</p><p class="sv-price">$95</p>
+      <ul class="sv-list"><li><span>Headshot<small>30 min, 1–2 outfits, 5 edits</small></span><b>$95</b></li><li><span>Grad session<small>1 hr, campus, 2–3 outfits, 25 edits</small></span><b>$175</b></li></ul>
+      <a class="btn ghost" href="#inquire" data-service="Headshots and grad photos">Inquire</a></div>
+  </div>
+  <p class="note">A 50% deposit holds your date. Edited photos are delivered in 7–10 days. Travel fee applies in NYC.</p>
+</div></section>
+
+<section id="inquire"><div class="wrap inq">
+  <div>
+    <p class="eye">Inquire</p>
+    <h2 class="h">Let's make something</h2>
+    <p style="max-width:42ch">Tell me what you're picturing. I reply within 48 hours with availability and a quote.</p>
+    <p class="contact-alt">Rather DM? <a href="https://www.instagram.com/24hrt.z/" target="_blank" rel="noopener">@24hrt.z on Instagram</a></p>
+  </div>
+  <form id="form" name="inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+    <input type="hidden" name="form-name" value="inquiry">
+    <p class="hp"><label for="bot">Leave this empty</label><input id="bot" name="bot-field" tabindex="-1" autocomplete="off"></p>
+    <div class="f"><label for="name">Name</label><input id="name" name="name" autocomplete="name" placeholder="Jordan Reyes"><span class="err" id="e-name"></span></div>
+    <div class="f"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="jordan@studio.com"><span class="err" id="e-email"></span></div>
+    <div class="f"><label for="service">Service</label><select id="service" name="service"><option value="">Choose one</option><option>Editorial and creative portraits</option><option>Brand and artist campaigns</option><option>Headshots and grad photos</option><option>Something else</option></select><span class="err" id="e-service"></span></div>
+    <div class="f"><label for="date">Ideal date</label><input id="date" name="date" type="date"></div>
+    <div class="f full"><label for="msg">The idea</label><textarea id="msg" name="message" placeholder="Lookbook for a spring drop, 6 pieces, two models, moody red lighting."></textarea></div>
+    <div class="f full"><button class="btn solid" id="send" type="submit" style="justify-self:start">Send inquiry</button></div>
+    <div class="sent" id="sent" hidden></div>
+  </form>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>© <span id="yr">2026</span> 24HRT.Z · Bryce</span><span>Connecticut and New York</span></div></footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-x" id="lbx" aria-label="Close">✕</button>
+  <button class="lb-nav prev" id="lbp" aria-label="Previous photo">‹</button>
+  <button class="lb-nav next" id="lbn" aria-label="Next photo">›</button>
+  <div class="lb-img" id="lbi"><img id="lbimg" alt=""></div>
+  <div class="lb-cap" id="lbc"></div>
+</div>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+document.getElementById('yr').textContent=new Date().getFullYear();
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const stage=$('stage'),nowT=$('nowT'),nowS=$('nowS'),grid=$('grid');
+const lb=$('lb'),lbi=$('lbi'),lbimg=$('lbimg'),lbc=$('lbc');
+let projects=[],photos=[];
+
+/* ---------- Cover Flow ---------- */
+let cards=[],n=0,S,SP,TIGHT,ANG=72,DEPTH,pos=0,vel=0,dragging=false,lastX=0,lastT=0,startX=0,downCard=null,raf=0;
+function buildCards(){
+  n=projects.length;
+  cards=projects.map((p,i)=>{
+    const c=p.photos[0],d=document.createElement('div');d.className='card';d.dataset.i=i;
+    const img=`<img src="${c.sm}" alt="" style="object-position:${p.focus}" draggable="false"${i>3&&i<n-3?' loading="lazy"':''}>`;
+    d.innerHTML=`<div class="face">${img}</div><div class="refl" aria-hidden="true">${img}</div>`;
+    stage.appendChild(d);return d});
+  size();
+}
+function size(){const w=stage.clientWidth;S=Math.round(Math.min(260,Math.max(150,w*0.3)));SP=S*0.8;TIGHT=S*0.22;DEPTH=S*0.85;
+  cards.forEach(c=>{c.style.width=S+'px';c.style.height=S+'px';c.style.marginLeft=(-S/2)+'px';c.style.marginTop=(-S/2)+'px'});draw()}
+const idx=()=>((Math.round(pos)%n)+n)%n;
+function draw(){if(!n)return;cards.forEach((c,i)=>{let o=((i-pos)%n+n)%n;if(o>n/2)o-=n;const a=Math.abs(o),s=Math.sign(o);let x,ry,z;
+  if(a<=1){x=o*SP;ry=-o*ANG;z=-a*DEPTH}else{x=s*(SP+(a-1)*TIGHT);ry=-s*ANG;z=-DEPTH}
+  c.style.transform=`translateX(${x}px) translateZ(${z}px) rotateY(${ry}deg)`;c.style.zIndex=1000-Math.round(a*10);c.style.visibility=a>5.2?'hidden':'visible';
+  c.style.filter=`brightness(${a<1?1-a*0.3:0.7-Math.min(0.35,(a-1)*0.08)})`});
+  const p=projects[idx()];nowT.textContent=p.name;nowS.textContent=[p.tag,p.photos.length+' photos'].filter(Boolean).join(' · ')}
+function goTo(t){cancelAnimationFrame(raf);if(reduce){pos=t;draw();return}const step=()=>{pos+=(t-pos)*0.16;draw();if(Math.abs(t-pos)>0.002)raf=requestAnimationFrame(step);else{pos=t;draw()}};raf=requestAnimationFrame(step)}
+function coast(){vel*=0.92;pos+=vel;draw();if(Math.abs(vel)>0.004)raf=requestAnimationFrame(coast);else goTo(Math.round(pos))}
+stage.addEventListener('pointerdown',e=>{if(!n)return;dragging=true;cancelAnimationFrame(raf);startX=lastX=e.clientX;lastT=performance.now();vel=0;downCard=e.target.closest('.card');stage.classList.add('drag');stage.setPointerCapture(e.pointerId)});
+stage.addEventListener('pointermove',e=>{if(!dragging)return;const now=performance.now(),d=-(e.clientX-lastX)/SP;pos+=d;vel=d*16/Math.max(1,now-lastT);lastX=e.clientX;lastT=now;draw()});
+stage.addEventListener('pointerup',e=>{if(!dragging)return;dragging=false;stage.classList.remove('drag');
+  if(Math.abs(e.clientX-startX)<6&&downCard){const i=+downCard.dataset.i;let o=((i-pos)%n+n)%n;if(o>n/2)o-=n;if(Math.abs(o)<0.5){goTo(Math.round(pos));openProject(i)}else goTo(Math.round(pos+o));return}
+  if(reduce)goTo(Math.round(pos));else raf=requestAnimationFrame(coast)});
+stage.addEventListener('pointercancel',()=>{dragging=false;stage.classList.remove('drag');goTo(Math.round(pos))});
+stage.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();goTo(Math.round(pos)+1)}else if(e.key==='ArrowLeft'){e.preventDefault();goTo(Math.round(pos)-1)}else if(e.key==='Enter'){openProject(idx())}});
+window.addEventListener('resize',()=>{size();if(lb.classList.contains('open'))fit()});
+
+/* ---------- Lightbox ---------- */
+let list=[],li=0,sx=null,swiped=false,lastFocus=null;
+function fit(){const p=list[li],r=p.w/p.h;const W=Math.min(1100,innerWidth*0.8),H=innerHeight*0.76;let w,h;if(W/H>r){h=H;w=H*r}else{w=W;h=W/r}
+  lbi.style.width=Math.round(w)+'px';lbi.style.height=Math.round(h)+'px'}
+function show(){const p=list[li];fit();lbimg.classList.remove('ready');lbimg.onload=()=>lbimg.classList.add('ready');lbimg.src=p.src;lbimg.alt=p.name+', photo '+(p.n);
+  if(lbimg.complete&&lbimg.naturalWidth)lbimg.classList.add('ready');
+  lbc.innerHTML='';const b=document.createElement('b');b.textContent=p.name;lbc.append(b,' · '+(li+1)+' of '+list.length);
+  [1,-1].forEach(d=>{const q=list[(li+d+list.length)%list.length];if(q){const im=new Image();im.src=q.src}});
+  const multi=list.length>1;$('lbp').hidden=!multi;$('lbn').hidden=!multi}
+function openList(l,i){list=l;li=i;lastFocus=document.activeElement;show();lb.classList.add('open');$('lbx').focus()}
+function openProject(i){openList(photos.filter(p=>p.p===i),0)}
+function step(d){li=(li+d+list.length)%list.length;show()}
+function close(){lb.classList.remove('open');if(lastFocus)lastFocus.focus({preventScroll:true})}
+lb.addEventListener('click',()=>{if(swiped){swiped=false;return}close()});
+lb.addEventListener('pointerdown',e=>{sx=e.clientX});
+lb.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40&&list.length>1){swiped=true;step(dx<0?1:-1)}});
+$('lbp').addEventListener('click',e=>{e.stopPropagation();step(-1)});
+$('lbn').addEventListener('click',e=>{e.stopPropagation();step(1)});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowRight')step(1);else if(e.key==='ArrowLeft')step(-1)});
+
+/* ---------- All work grid ---------- */
+const chips=document.querySelectorAll('.chip');let filter='All';
+function renderGrid(){const l=filter==='All'?photos:photos.filter(p=>p.cat===filter);grid.innerHTML='';
+  l.forEach((p,i)=>{const b=document.createElement('button');b.className='tile';b.style.aspectRatio=p.w+' / '+p.h;
+    const img=document.createElement('img');img.src=p.sm;img.alt='';img.loading='lazy';img.decoding='async';img.width=p.w;img.height=p.h;
+    const s=document.createElement('span');const t=document.createElement('b');t.textContent=p.name;s.append(t,p.cat);
+    b.append(img,s);b.setAttribute('aria-label',p.name+', photo '+p.n);b.addEventListener('click',()=>openList(l,i));grid.appendChild(b)});
+  $('gcount').textContent=l.length+' photos'}
+chips.forEach(c=>c.addEventListener('click',()=>{filter=c.dataset.f;chips.forEach(x=>x.setAttribute('aria-pressed',x===c?'true':'false'));renderGrid()}));
+
+/* ---------- Load projects ---------- */
+fetch('projects.json').then(r=>r.json()).then(data=>{
+  projects=data.projects||[];
+  projects.forEach((p,pi)=>p.photos.forEach((ph,j)=>photos.push({...ph,p:pi,n:j+1,name:p.name,cat:p.category})));
+  buildCards();renderGrid();
+}).catch(()=>{nowT.textContent='Work is loading slowly';nowS.textContent='Refresh the page to try again.'});
+
+/* ---------- Inquiry form ---------- */
+document.querySelectorAll('[data-service]').forEach(a=>a.addEventListener('click',()=>{$('service').value=a.dataset.service}));
+const form=$('form'),sent=$('sent'),send=$('send');
+const err=(id,m)=>{$('e-'+id).textContent=m};
+['name','email','service'].forEach(id=>$(id).addEventListener('input',()=>err(id,'')));
+form.addEventListener('submit',e=>{e.preventDefault();let ok=true;
+  const v=id=>$(id).value.trim();
+  if(!v('name')){err('name','Add your name.');ok=false}
+  if(!/^\S+@\S+\.\S+$/.test(v('email'))){err('email','Add an email I can reply to.');ok=false}
+  if(!v('service')){err('service','Pick the kind of shoot.');ok=false}
+  if(!ok)return;
+  if(!window.SITE_LIVE){sent.textContent='Preview only. On the live site this sends straight to your inbox.';sent.hidden=false;return}
+  send.disabled=true;send.textContent='Sending…';
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
+    .then(r=>{if(!r.ok)throw 0;form.reset();sent.textContent="Got it. I'll reply within 48 hours.";sent.hidden=false;send.textContent='Sent'})
+    .catch(()=>{send.disabled=false;send.textContent='Send inquiry';sent.textContent="That didn't go through. Try again, or DM me on Instagram @24hrt.z.";sent.hidden=false});
+});
+})();
+</script>
+</body>
+</html>

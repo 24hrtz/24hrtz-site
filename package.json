@@ -1,0 +1,7 @@
+{
+  "name": "24hrtz-site",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "node build.mjs" },
+  "dependencies": { "sharp": "0.33.5", "yaml": "2.6.1" }
+}

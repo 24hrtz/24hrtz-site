@@ -1,0 +1,56 @@
+# Your projects, in the order they show on the site.
+# The first project is the first frame in the Cover Flow.
+#
+# To add a shoot:
+#   1. Upload a folder of photos into the "photos" folder (put a cover.jpg in it)
+#   2. Copy one of the entries below, paste it at the top, and change the words
+#
+# name:     the title people see
+# folder:   must match the folder name inside "photos" exactly
+# tag:      the short line under the title
+# category: Editorial, Campaigns, or Portraits (powers the grid filters)
+# focus:    optional. Where the square Cover Flow crop centers:
+#           top, center, bottom, left, or right (center if you leave it out)
+
+- name: Racing Blue
+  folder: racing-blue
+  tag: Streetwear editorial
+  category: Editorial
+
+- name: Listening Experience
+  folder: listening-experience
+  tag: Headphone spec campaign
+  category: Campaigns
+  focus: top
+
+- name: Fractured Colors
+  folder: fractured-colors
+  tag: Gel and gobo portrait series
+  category: Editorial
+
+- name: A Silver Lining
+  folder: a-silver-lining
+  tag: Chains, metallics, motion
+  category: Editorial
+  focus: top
+
+- name: On Empty
+  folder: on-empty
+  tag: After-hours editorial
+  category: Editorial
+
+- name: Take 3
+  folder: take-3
+  tag: Theater editorial
+  category: Editorial
+  focus: top
+
+- name: Snakes in tha Grass
+  folder: snakes-in-tha-grass
+  tag: Dusk portrait session
+  category: Portraits
+
+- name: Graduation
+  folder: graduation-photos
+  tag: Grad sessions
+  category: Portraits
